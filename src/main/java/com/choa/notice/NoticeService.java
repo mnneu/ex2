@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.choa.util.MakePage;
@@ -13,8 +14,13 @@ import com.choa.util.RowMaker;
 @Service
 //NoticeService noticeService = new NoticeService();
 public class NoticeService {
+	
 	@Inject
 	private NoticeDAO noticeDAO;
+	
+	public void test(){
+		System.out.println(noticeDAO);
+	}
 	
 	/*public NoticeService(NoticeDAO noticeDAO) {
 		this.noticeDAO=noticeDAO;

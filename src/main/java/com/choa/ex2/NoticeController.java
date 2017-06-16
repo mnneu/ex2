@@ -24,6 +24,13 @@ public class NoticeController {
 	@Inject  //type으로 찾음
 	private NoticeService noticeService;
 	
+	@RequestMapping(value="test")
+	public void test(){
+		System.out.println(noticeService);
+		noticeService.test();
+		
+	}
+	
 	
 	@RequestMapping(value="noticeList",method=RequestMethod.GET)
 	public void noticeList(Model model, @RequestParam(defaultValue="1")Integer curPage) throws Exception{
@@ -45,7 +52,7 @@ public class NoticeController {
 	}
 	@RequestMapping(value="noticeWrite",method=RequestMethod.GET)
 	public void noticeWrite(Integer num, Model model) throws Exception{
-		
+		model.addAttribute("path", "Write");
 		
 		
 	}
@@ -63,12 +70,13 @@ public class NoticeController {
 		
 	}
 	@RequestMapping(value="noticeUpdate",method=RequestMethod.GET)
-	public void noticeUpdate(Model model, Integer num )throws Exception{
+	public String noticeUpdate(Model model, Integer num )throws Exception{
 		
 		NoticeDTO noticeDTO = noticeService.noticeView(num);
 		
 		model.addAttribute("dto", noticeDTO);
 		
+		return"notice/noticeWrite";
 	}
 	@RequestMapping(value="noticeUpdate",method=RequestMethod.POST)
 	public String noticeUpdate(NoticeDTO noticeDTO, RedirectAttributes rd)throws Exception{
